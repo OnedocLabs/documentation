@@ -17,12 +17,15 @@
   },
   "favicon": "/favicon.svg",
   "colors": {
-    "primary": "#000000", 
-    "light": "#FFFFFF",  
-    "dark": "#000000",  
+    "primary": "#ffffff",
+    "light": "#ffffff",
+    "background": {
+      "light": "#FFFFFF",
+      "dark": "#000000"
+    },
     "anchors": {
-      "from": "#000000",  
-      "to": "#FFFFFF"    
+      "from"  : "#101010",
+      "to"    : "#606060"
     }
   },
   "topbarLinks": [
