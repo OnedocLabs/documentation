@@ -5,6 +5,9 @@
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
   },
+  "feedback": {
+    "thumbsRating": true
+  },
   "favicon": "/favicon.svg",
   "colors": {
     "primary": "#000000", 
@@ -41,6 +44,11 @@
       "name": "Community",
       "icon": "slack",
       "url": "https://mintlify.com/community"
+    },
+    {
+      "name": "Knowledge",
+      "icon": "book",
+      "url": "https://mintlify.com/community"
     }
   ],
   "navigation": [
@@ -48,8 +56,7 @@
       "group": "Get Started",
       "pages": [
         "introduction",
-        "quickstart",
-        "development"
+        "gettoknowus"
       ]
     },
     {
