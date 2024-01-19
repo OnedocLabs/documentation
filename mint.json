@@ -68,7 +68,7 @@
   ],
   "navigation": [
     {
-      "group": "Get Started",
+      "group": "General",
       "pages": [
         "introduction",
         "gettoknowus"
@@ -88,6 +88,13 @@
         "ressources/sdks",
         "ressources/security",
         "ressources/integrations"      
+      ]
+    },
+    {
+      "group": "Templates",
+      "pages": [
+        "templates/invoice",
+        "templates/contract"      
       ]
     },
     {

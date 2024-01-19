@@ -1,6 +1,6 @@
 ---
 title: 'Node.js'
-description: 'Learn how to create your first document using the OneDoc Node.js SDK.'
+description: 'Learn how to create your first document using the Onedoc Node.js SDK.'
 ---
 <Tip>
 If you have any troubles getting started, don't hesitate to contact our [**support team**](www.codemuse.app) !
@@ -9,25 +9,25 @@ If you have any troubles getting started, don't hesitate to contact our [**suppo
 ## Prerequisites
 
 To get the most out of this guide, you'll need to:
-* [Sign-up/in to OneDoc](www.codemuse.app)
+* [Sign-up/in to Onedoc](www.codemuse.app)
 * [Generate your API Key](www.codemuse.app)
 
 ## 1. Installation
 
-Get the OneDoc Node.js SDK
+Get the Onedoc Node.js SDK
 
 <CodeGroup>
 
 ```sh npm
-npm install onedoc
+npm install Onedoc
 ```
 
 ```sh yarn
-yarn add onedoc
+yarn add Onedoc
 ```
 
 ```sh pnpm
-pnpm add onedoc
+pnpm add Onedoc
 ```
 
 </CodeGroup>
@@ -55,20 +55,20 @@ export const PDFTemplate: React.FC<Readonly<PDFTemplateProps>> = ({
 ## 3. Generate your PDF 
 Create an API file under `app/api/generate/route.js`.
 
-Import the React document template and generate a PDF using your `ONEDOC_API_KEY` and the `react` parameter.
+Import the React document template and generate a PDF using your `Onedoc_API_KEY` and the `react` parameter.
 
 <CodeGroup>
 
 ```javascript app/api/generate/route.js
 import { PDFTemplate } from './components/PDFTemplate';
-import { Onedoc } from 'onedoc';
+import { Onedoc } from 'Onedoc';
 
-const onedoc = new Onedoc(process.env.ONEDOC_API_KEY);
+const Onedoc = new Onedoc(process.env.Onedoc_API_KEY);
 
 export async function POST() {
   try {
-    const data = await onedoc.pdf.generate({
-      owner: 'Auguste <onboarding@onedoc.dev>',
+    const data = await Onedoc.pdf.generate({
+      owner: 'Auguste <onboarding@Onedoc.dev>',
       react: PDFTemplate({ title: 'My First PDF' }),
     });
 
