@@ -1,0 +1,119 @@
+---
+title: 'Node.js'
+description: 'Learn how to create your first document using the OneDoc Node.js SDK.'
+---
+
+## Prerequisites
+
+To get the most out of this guide, you'll need to:
+* [Create an API Key](www.codemuse.app)
+* XXX
+
+## 1. Installation
+
+Get the OneDoc Node.js SDK
+
+<CodeGroup>
+
+```sh npm
+npm install onedoc
+```
+
+```sh yarn
+yarn add onedoc
+```
+
+```sh pnpm
+pnpm add onedoc
+```
+
+</CodeGroup>
+
+
+## 2. Create a document template
+
+Start by creating your document template on `components/pdf-template.tsx`.
+
+```typescript components/pdf-template.tsx
+import * as React from 'react';
+
+interface PDFTemplateProps {
+  title: string;
+}
+
+export const PDFTemplate: React.FC<Readonly<PDFTemplateProps>> = ({
+  title,
+}) => (
+  <div>
+    <h1>{firstName}</h1>
+  </div>
+);
+```
+## 3. Generate your PDF 
+Create an API file under `pages/api/send.ts` if you’re using the [Pages Router](www.codemuse.app) or create a route file under `app/api/send/route.ts` if you’re using the [App Router](www.codemuse.app).
+
+Import the React document template and generate a PDF using your `ONEDOC_API_KEY` and the `react` parameter.
+
+<CodeGroup>
+
+```typescript pages/api/generate.ts
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { PDFTemplate } from '../../components/PDFTemplate';
+import { Onedoc } from 'onedoc';
+
+const onedoc = new Onedoc(process.env.ONEDOC_API_KEY);
+
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+  const { data, error } = await onedoc.pdf.generate({
+    owner: 'Auguste <onboarding@onedoc.dev>',
+    react: PDFTemplate({ title: 'My First PDF' }),
+  });
+
+  if (error) {
+    return res.status(400).json(error);
+  }
+
+  res.status(200).json(data);
+};
+```
+
+```typescript app/api/generate/route.ts
+import { PDFTemplate } from '../../../components/PDFTemplate';
+import { Onedoc } from 'onedoc';
+
+const onedoc = new Onedoc(process.env.ONEDOC_API_KEY);
+
+export async function POST() {
+  try {
+    const data = await onedoc.pdf.generate({
+      owner: 'Auguste <onboarding@onedoc.dev>',
+      react: PDFTemplate({ title: 'My First PDF' }),
+    });
+
+    return Response.json(data);
+  } catch (error) {
+    return Response.json({ error });
+  }
+}
+```
+
+</CodeGroup>
+
+## 4. Try it yourself
+
+<CardGroup cols={2}>
+  <Card
+    title="Next.js Example (Page Router)"
+    icon="pen-to-square"
+    href="https://mintlify.com/docs/quickstart"
+  >
+    See the full code example.
+  </Card>
+  <Card
+    title="Next.js Example (App Router)"
+    icon="pen-to-square"
+    href="https://mintlify.com/docs/development"
+  >
+    Preview your changes before you push to make sure they're perfect
+  </Card>
+</CardGroup>
