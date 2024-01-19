@@ -61,11 +61,16 @@
       "group": "Quick Start",
       "pages": [
         "quickstart/nodejs",
-        "quickstart/python",
-        "quickstart/php",
-        "quickstart/ruby",
-        "quickstart/java",
-        "quickstart/go"        
+        "quickstart/python"      
+      ]
+    },
+    {
+      "group": "Ressources",
+      "pages": [
+        "ressources/faq",
+        "ressources/sdks",
+        "ressources/security",
+        "ressources/integration"      
       ]
     },
     {

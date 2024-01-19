@@ -3,3 +3,58 @@ title: 'Python'
 description: 'Learn how to create your first document using the OneDoc Python SDK.'
 ---
 
+<Tip>
+If you have any troubles getting started, don't hesitate to contact our [**support team**](www.codemuse.app) !
+</Tip>
+
+## Prerequisites
+
+To get the most out of this guide, you'll need to:
+* [Sign-up/in to OneDoc](www.codemuse.app)
+* [Create an API Key](www.codemuse.app)
+
+## 1. Installation
+
+Get the OneDoc Node.js SDK
+
+<CodeGroup>
+
+```sh pip
+pip install onedoc
+```
+
+</CodeGroup>
+
+
+## 2. Generate a PDF using HTML
+
+The easiest way to generate a PDF using the `html` parameter
+
+```python generate.py
+import os
+import onedoc
+
+onedoc.api_key = os.environ["ONEDOC_API_KEY"]
+
+params = {
+    "owner": "Auguste <onboarding@onedoc.dev>",
+    "html": "<html> <body> <h1>My First Heading</h1> <p>My first paragraph.</p></body> </html>"
+}
+
+pdf = onedoc.pdf.generate(params)
+with open('myfirstdoc.pdf', 'wb') as file:
+    file.write(pdf)
+```
+
+
+## 3. Try it yourself
+
+<CardGroup cols={1}>
+  <Card
+    title="Python Example"
+    icon="pen-to-square"
+    href="https://mintlify.com/docs/quickstart"
+  >
+    See the full code example.
+  </Card>
+</CardGroup>
