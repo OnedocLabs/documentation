@@ -5,6 +5,13 @@
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
   },
+  "seo": {
+    "indexHiddenPages": true
+  },
+  "modeToggle": {
+    "default": "dark",
+    "isHidden": true
+  },
   "feedback": {
     "thumbsRating": true
   },
@@ -46,6 +53,11 @@
       "url": "https://mintlify.com/community"
     },
     {
+      "name": "GitHub",
+      "icon": "github",
+      "url": "https://mintlify.com/docs"
+    },
+    {
       "name": "Knowledge",
       "icon": "book",
       "url": "https://mintlify.com/community"
@@ -73,17 +85,6 @@
         "ressources/sdks",
         "ressources/security",
         "ressources/integrations"      
-      ]
-    },
-    {
-      "group": "Essentials",
-      "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
       ]
     },
     {

@@ -37,7 +37,7 @@ pnpm add onedoc
 
 Start by creating your document template on `components/pdf-template.tsx`.
 
-```typescript components/pdf-template.tsx
+```javascript components/pdf-template.js
 import * as React from 'react';
 
 interface PDFTemplateProps {
@@ -53,35 +53,14 @@ export const PDFTemplate: React.FC<Readonly<PDFTemplateProps>> = ({
 );
 ```
 ## 3. Generate your PDF 
-Create an API file under `pages/api/send.ts` if you’re using the [Pages Router](www.codemuse.app) or create a route file under `app/api/send/route.ts` if you’re using the [App Router](www.codemuse.app).
+Create an API file under `app/api/generate/route.js`.
 
 Import the React document template and generate a PDF using your `ONEDOC_API_KEY` and the `react` parameter.
 
 <CodeGroup>
 
-```typescript pages/api/generate.ts
-import type { NextApiRequest, NextApiResponse } from 'next';
-import { PDFTemplate } from '../../components/PDFTemplate';
-import { Onedoc } from 'onedoc';
-
-const onedoc = new Onedoc(process.env.ONEDOC_API_KEY);
-
-export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const { data, error } = await onedoc.pdf.generate({
-    owner: 'Auguste <onboarding@onedoc.dev>',
-    react: PDFTemplate({ title: 'My First PDF' }),
-  });
-
-  if (error) {
-    return res.status(400).json(error);
-  }
-
-  res.status(200).json(data);
-};
-```
-
-```typescript app/api/generate/route.ts
-import { PDFTemplate } from '../../../components/PDFTemplate';
+```javascript app/api/generate/route.js
+import { PDFTemplate } from './components/PDFTemplate';
 import { Onedoc } from 'onedoc';
 
 const onedoc = new Onedoc(process.env.ONEDOC_API_KEY);
