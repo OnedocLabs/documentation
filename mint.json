@@ -93,6 +93,7 @@
     {
       "group": "Templates",
       "pages": [
+        "templates/intro",
         "templates/invoice",
         "templates/contract"      
       ]

@@ -35,7 +35,7 @@ pnpm add Onedoc
 
 ## 2. Create a document template
 
-Start by creating your document template on `components/pdf-template.tsx`.
+Start by creating your document template on `components/pdf-template.js`.
 
 ```javascript components/pdf-template.js
 import * as React from 'react';
@@ -61,22 +61,17 @@ Import the React document template and generate a PDF using your `Onedoc_API_KEY
 
 ```javascript app/api/generate/route.js
 import { PDFTemplate } from './components/PDFTemplate';
-import { Onedoc } from 'Onedoc';
+import { Onedoc } from 'onedoc';
+import fs from 'fs';
 
-const Onedoc = new Onedoc(process.env.Onedoc_API_KEY);
+const onedoc = new Onedoc(process.env.ONEDOC_API_KEY);
 
-export async function POST() {
-  try {
-    const data = await Onedoc.pdf.generate({
-      owner: 'Auguste <onboarding@Onedoc.dev>',
-      react: PDFTemplate({ title: 'My First PDF' }),
-    });
+const { file, info, error } = await onedoc.pdf.generate({
+  owner: 'Auguste <onboarding@onedoc.dev>',
+  react: PDFTemplate({ title: 'My First PDF' }),
+});
 
-    return Response.json(data);
-  } catch (error) {
-    return Response.json({ error });
-  }
-}
+fs.writeFileSync('invoice.pdf', file);
 ```
 
 </CodeGroup>
