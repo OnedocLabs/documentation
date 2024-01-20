@@ -40,11 +40,6 @@
   },
   "anchors": [
     {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
-    },
-    {
       "name": "Community",
       "icon": "discord",
       "url": "https://mintlify.com/community"
@@ -55,9 +50,9 @@
       "url": "https://mintlify.com/docs"
     },
     {
-      "name": "Knowledge",
+      "name": "Templates",
       "icon": "book",
-      "url": "https://mintlify.com/community"
+      "url": "/templates/intro"
     }
   ],
   "navigation": [
@@ -91,25 +86,12 @@
         "templates/invoice",
         "templates/contract"      
       ]
-    },
-    {
-      "group": "API Documentation",
-      "pages": [
-        "api-reference/introduction"
-      ]
-    },
-    {
-      "group": "Endpoint Examples",
-      "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
-      ]
     }
   ],
   "footerSocials": {
     "twitter": "https://twitter.com/mintlify",
     "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "linkedin": "https://www.linkedin.com/company/mintsearch",
+    "slack": "https://mintlify.com/slack"
   }
 }
