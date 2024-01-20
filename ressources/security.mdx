@@ -3,7 +3,7 @@ title: 'Security'
 description: 'An overview of Onedoc security features and practices.'
 ---
 
-# Our standards
+# Our Principles
 
 **Onedoc** establishes policies and controls, monitors compliance with those controls, and proves the security and compliance to third-party auditors.
 
@@ -11,17 +11,106 @@ Our policies are based on the following **foundational principles**:
 
 <CardGroup cols={2}>
   <Card
-    title="Node.js"
+    title="Authentication"
     icon="square-1"
-    href="https://mintlify.com/docs/quickstart"
   >
-    github.com/Onedoc/Onedoc-node
+    Strict user authentication protocols are in place, ensuring that only authorized personnel can access sensitive documents and information.
   </Card>
+
   <Card
-    title="Python"
-    icon="pen-to-square"
-    href="https://mintlify.com/docs/development"
+    title="Regular Auditing"
+    icon="square-2"
   >
-    github.com/Onedoc/Onedoc-python
+    We conduct regular audits to rigorously assess and enhance our security measures, maintaining the highest standards of data protection.
+  </Card>
+
+  <Card
+    title="Data Encryption"
+    icon="square-3"
+  >
+    Every piece of data, especially sensitive and private information, is encrypted in transit and at rest, ensuring maximum security against unauthorized access.
+  </Card>
+
+  <Card
+    title="Incident Response Plan"
+    icon="square-4"
+  >
+    A comprehensive incident response plan is established to quickly and effectively address any security breaches or threats. 
+ </Card>
+
+  <Card
+    title="Privacy Compliance"
+    icon="square-5"
+  >
+Our security practices are aligned with global privacy standards, ensuring compliance with regulations like GDPR and SOC2.
+  </Card>
+
+  <Card
+    title="Transparent Reporting"
+    icon="square-6"
+  >
+Transparent reporting mechanisms are in place, providing clear visibility into our security operations and compliance status.
   </Card>
 </CardGroup>
+
+## Compliance Standards
+
+<AccordionGroup>
+<Accordion title="SOC 2 Type 2" icon="hourglass-clock">
+    Onedoc is in the progress of being SOC 2 Type 2 compliant.
+</Accordion>
+<Accordion title="GDPR" icon="hourglass-clock">
+    Onedoc is actively pursuing GDPR compliance.
+</Accordion>
+</AccordionGroup>
+
+## Data Protection
+
+<CardGroup cols={1}>
+  <Card
+    title="Data at rest"
+    icon="database"
+  >
+    All datastores are encrypted at rest. Sensitive collections and tables also use row-level encryption.  
+  </Card>
+
+  <Card
+    title="Data in transit"
+    icon="network-wired"
+  >
+    Resend uses TLS 1.3 or higher everywhere data is transmitted over potentially insecure networks.  
+  </Card>
+
+  <Card
+    title="Data backup"
+    icon="server"
+  >
+    Resend backs-up all production data using a point-in-time approach. Backups are persisted for 30 days, and are globally replicated for resiliency against regional disasters.  
+  </Card>
+</CardGroup>
+  ## In-house security
+
+<CardGroup cols={1}>
+  <Card
+    title="Endpoint protection"
+    icon="computer"
+  >
+    All company devices are equipped with anti-malware protection. Endpoint security alerts are monitored with 24/7/365 coverage. We use MDM software to enforce secure configuration of endpoints, such as disk encryption, screen lock configuration, and software updates.  
+  </Card>
+
+  <Card
+    title="Education"
+    icon="user-graduate"
+  >
+    Onedoc provides comprehensive security training to all employees upon onboarding and annually. Onedoc conducts threat briefings with employees to inform them of important security and safety-related updates that require special attention or action.  
+  </Card>
+
+  <Card
+    title="ID & Access"
+    icon="passport"
+  >
+    Onedoc employees are granted access to applications based on their role, and automatically deprovisioned upon termination of their employment. Further access must be approved according to the policies set for each application. Multi-factor authentication is required for all employees to access company applications.
+  </Card>
+</CardGroup>
+
+<Warning> Onedoc is in progress to achieve all the statement above. [Contact support](www.codemuse.app) to get an up-to-date status of the security</Warning>
