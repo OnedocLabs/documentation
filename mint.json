@@ -1,6 +1,6 @@
 {
   "schema": "schema.json",
-  "name": "Starter Kit",
+  "name": "Onedoc",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
