@@ -89,9 +89,8 @@
     }
   ],
   "footerSocials": {
-    "twitter": "https://twitter.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch",
-    "slack": "https://mintlify.com/slack"
+    "twitter": "https://twitter.com/Onedoclabs",
+    "github": "https://github.com/OnedocLabs/onedoc",
+    "linkedin": "https://www.linkedin.com/company/onedoclabs",
   }
 }
