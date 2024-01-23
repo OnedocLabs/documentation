@@ -8,6 +8,12 @@
   "seo": {
     "indexHiddenPages": true
   },
+  "analytics": {
+    "posthog": {
+      "apiKey": "phc_jHjWg3U3A39knTK6ChWEUHIXMFYZ7rATZOLzhK39dv9",
+      "apiHost": "https://eu.posthog.com"
+    }
+  },
   "modeToggle": {
     "default": "dark",
     "isHidden": true
