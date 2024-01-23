@@ -31,28 +31,28 @@
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "url": "https://mail.google.com/mail/?view=cm&fs=1&to=contact@onedoclabs.com&su=Support%20request%20&body=[Describe%20your%20issue%20and%20our%20team%20will%20get%20back%20to%20you%20as%20soon%20as%20possible]"
     }
   ],
   "topbarCtaButton": {
     "name": "Get Started",
-    "url": "https://dashboard.mintlify.com"
+    "url": "https://www.onedoclabs.com/"
   },
   "anchors": [
     {
       "name": "Community",
       "icon": "discord",
-      "url": "https://mintlify.com/community"
+      "url": "https://discord.com/invite/uRJE6e2rgr"
     },
     {
       "name": "GitHub",
       "icon": "github",
-      "url": "https://mintlify.com/docs"
+      "url": "https://github.com/OnedocLabs/onedoc"
     },
     {
       "name": "Templates",
       "icon": "book",
-      "url": "/templates/intro"
+      "url": "https://github.com/OnedocLabs/onedoc-templates"
     }
   ],
   "navigation": [
@@ -91,6 +91,6 @@
   "footerSocials": {
     "twitter": "https://twitter.com/Onedoclabs",
     "github": "https://github.com/OnedocLabs/onedoc",
-    "linkedin": "https://www.linkedin.com/company/onedoclabs",
+    "linkedin": "https://www.linkedin.com/company/onedoclabs"
   }
 }
