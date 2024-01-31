@@ -48,6 +48,11 @@
   },
   "anchors": [
     {
+      "name": "SDK Reference",
+      "icon": "code",
+      "url": "reference"
+    },
+    {
       "name": "Community",
       "icon": "discord",
       "url": "https://discord.com/invite/uRJE6e2rgr"
@@ -84,6 +89,10 @@
     {
       "group": "Templates",
       "pages": ["templates/intro", "templates/invoice", "templates/contract"]
+    },
+    {
+      "group": "SDK Reference",
+      "pages": ["reference/nodejs"]
     }
   ],
   "footerSocials": {

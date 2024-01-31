@@ -1,0 +1,65 @@
+---
+title: Node.js
+description: Node.js SDK reference.
+icon: node-js
+---
+
+## Installation
+
+The Node.js SDK is shipped as an [NPM package](https://www.npmjs.com/package/@onedoc/client).
+
+<CodeGroup>
+```sh npm
+npm install -s @onedoc/client
+```
+
+```sh yarn
+yarn add @onedoc/client
+```
+
+```sh pnpm
+pnpm add @onedoc/client
+```
+
+</CodeGroup>
+
+## Usage
+
+```js
+import { Onedoc } from "@onedoc/client";
+
+const onedoc = new Onedoc(process.env.ONEDOC_API_KEY);
+
+const document = {
+  html: "<h1>Hello world</h1>",
+  assets: [],
+};
+
+const { file, info, error } = await onedoc.render(document);
+```
+
+## Reference
+
+### `Onedoc`
+
+Constructor for the Onedoc client. Takes an API key as argument.
+
+### `Onedoc.render`
+
+The render function takes a document as argument and returns a promise that resolves to the rendered PDF file, the render metadata and the render error.
+
+#### Parameters
+
+| name     | type                                                                                         | optional | default | description |
+| -------- | -------------------------------------------------------------------------------------------- | -------- | ------- | ----------- |
+| html     | `string`                                                                                     | `false`  | `n/a`   |             |
+| metadata | `{ title?: string; author?: string; subject?: string; keywords?: string[]; date?: string; }` | `true`   | `n/a`   |             |
+| assets   | `PathString[]`                                                                               | `true`   | `n/a`   |             |
+
+#### Returns (promise)
+
+| name  | type                  | description            |
+| ----- | --------------------- | ---------------------- |
+| file  | `arrayBuffer \| null` | The rendered PDF file. |
+| info  | `object \| null`      | The render metadata.   |
+| error | `string \| null`      | The render error.      |
