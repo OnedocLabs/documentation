@@ -46,17 +46,19 @@ Constructor for the Onedoc client. Takes an API key as argument.
 
 ### `Onedoc.render`
 
-The render function takes a document object as an argument and returns a promise that resolves to the rendered PDF file, the render metadata and the render error.
+The render function takes a document object and a boolean (dev) as an argument and returns a promise that resolves to the rendered PDF file, the render metadata and the render error.
 
 #### Parameters
 
-The document object has the following properties:
+The `document` object has the following properties:
 
 | name   | type                           | optional | default | description |
 | ------ | ------------------------------ | -------- | ------- | ----------- |
 | html   | `string`                       | `false`  | `n/a`   |             |
 | title  | `string`                       | `true`   | `n/a`   |             |
 | assets | `PathString[] \| PathBuffer[]` | `true`   | `n/a`   |             |
+
+`dev`is an optional boolean parameter that determines whether a document is rendered with a watermark or not. Default value is false.
 
 #### Returns (promise)
 
