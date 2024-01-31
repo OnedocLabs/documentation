@@ -5,14 +5,14 @@ description: "Learn how to create your first document using the Onedoc Node.js S
 
 <Warning>
   Onedoc is currently in private beta only mode. [Contact
-  us](https://mail.google.com/mail/?view=cm&fs=1&to=contact@onedoclabs.com&su=Support%20request%20&body=[Describe%20your%20issue%20and%20our%20team%20will%20get%20back%20to%20you%20as%20soon%20as%20possible])
+  us](mailto:contact@onedoclabs.com?subject=Support%20request&body=Describe%20your%20issue%20and%20our%20team%20will%20get%20back%20to%20you%20as%20soon%20as%20possible.)
   to get access and try our solution.{" "}
 </Warning>
 
 <Tip>
   If you have any troubles getting started, don't hesitate to contact our
   [**support
-  team**](https://mail.google.com/mail/?view=cm&fs=1&to=contact@onedoclabs.com&su=Support%20request%20&body=[Describe%20your%20issue%20and%20our%20team%20will%20get%20back%20to%20you%20as%20soon%20as%20possible])
+  team**](mailto:contact@onedoclabs.com?subject=Support%20request&body=Describe%20your%20issue%20and%20our%20team%20will%20get%20back%20to%20you%20as%20soon%20as%20possible.)
   !
 </Tip>
 
@@ -48,19 +48,19 @@ pnpm add @onedoc/client
 Start by creating your document template on `components/pdf-template.js`.<br/>Your file must export a React component.
 
 ```javascript components/pdf-template.js
-import * as React from 'react';
+import * as React from "react";
 
-export const PDFTemplate = ({props}) => {
-
-    return (
-      <div>
-        <h1> Hello {props.name} !</h1>
-      </div>
+export const PDFTemplate = ({ name }) => {
+  return (
+    <div>
+      <h1> Hello {name} !</h1>
+    </div>
   );
 };
-
 ```
-## 3. Generate your PDF 
+
+## 3. Generate your PDF
+
 Get your API key at https://app.onedoclabs.com/.
 
 Import the React document template and generate a PDF using your `ONEDOC_API_KEY` and your main React component.
@@ -68,29 +68,40 @@ Import the React document template and generate a PDF using your `ONEDOC_API_KEY
 <CodeGroup>
 
 ```javascript app/api/generate/route.js
-import { PDFTemplate } from './components/PDFTemplate';
+import { PDFTemplate } from "./components/PDFTemplate";
 import { Onedoc } from '@onedoc/client"';
-import fs from 'fs';
+import { writeFileSync } from "fs";
+import { renderToString } from "react-dom/server";
 
 const onedoc = new Onedoc(process.env.ONEDOC_API_KEY);
 
 let doc = {
-        html: renderToString(<PDFTemplate props={"name":"Bruce Wayne"} />), // build dynamic documents by passing props
-        metadata: {
-          title: "Hello",
-          author: "Batman",
-          subject: "A simple doc to say hello.",
-        },
-        prod:false,
-        assets:[
-                { path:"./stylesheet.css", content: fs.readFileSync(path.join(process.cwd(),'stylesheet.css')).toString() }
-              ]
-       };
-  
-const pdf = await onedoc.render(doc);
-const pdfBuffer = Buffer.from(pdf);
+  html: renderToString(<PDFTemplate name="Bruce Wayne" />),
+  metadata: {
+    title: "Hello",
+    author: "Batman",
+    subject: "A simple doc to say hello.",
+  },
+  prod: false,
+  assets: [
+    {
+      path: "stylesheet.css",
+      content: fs
+        .readFileSync(path.join(process.cwd(), "stylesheet.css"))
+        .toString(),
+    },
+  ],
+};
 
+const { file, info, error } = await onedoc.render(doc);
+
+if (error) {
+  throw error;
+}
+
+writeFileSync("hello.pdf", Buffer.from(file));
 ```
+
 </CodeGroup>
 
 Stylesheets and other referenced assets should be passed in the `asset` parameter. If you are using a framework such as Tailwind, you must submit a <b>compiled stylesheet</b> that can be applied to a HTML file that contains the compiled React component. <br/>

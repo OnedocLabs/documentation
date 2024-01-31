@@ -30,16 +30,16 @@
       "dark": "#000000"
     },
     "anchors": {
-      "from"  : "#101010",
-      "to"    : "#606060"
+      "from": "#101010",
+      "to": "#606060"
     }
   },
-  
+
   "topbarLinks": [
-    {"name": "Private Beta Access", "url": "https://www.onedoclabs.com/"},
+    { "name": "Private Beta Access", "url": "https://www.onedoclabs.com/" },
     {
       "name": "Support",
-      "url": "https://mail.google.com/mail/?view=cm&fs=1&to=contact@onedoclabs.com&su=Support%20request%20&body=[Describe%20your%20issue%20and%20our%20team%20will%20get%20back%20to%20you%20as%20soon%20as%20possible]"
+      "url": "mailto:contact@onedoclabs.com?subject=Support%20request&body=Describe%20your%20issue%20and%20our%20team%20will%20get%20back%20to%20you%20as%20soon%20as%20possible."
     }
   ],
   "topbarCtaButton": {
@@ -66,17 +66,11 @@
   "navigation": [
     {
       "group": "General",
-      "pages": [
-        "introduction",
-        "gettoknowus"
-      ]
+      "pages": ["introduction", "gettoknowus"]
     },
     {
       "group": "Quick Start",
-      "pages": [
-        "quickstart/nodejs",
-        "quickstart/python"      
-      ]
+      "pages": ["quickstart/nodejs", "quickstart/python"]
     },
     {
       "group": "Ressources",
@@ -84,16 +78,12 @@
         "ressources/faq",
         "ressources/sdks",
         "ressources/security",
-        "ressources/integrations"      
+        "ressources/integrations"
       ]
     },
     {
       "group": "Templates",
-      "pages": [
-        "templates/intro",
-        "templates/invoice",
-        "templates/contract"      
-      ]
+      "pages": ["templates/intro", "templates/invoice", "templates/contract"]
     }
   ],
   "footerSocials": {
