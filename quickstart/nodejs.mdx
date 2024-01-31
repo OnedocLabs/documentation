@@ -78,12 +78,7 @@ const onedoc = new Onedoc(process.env.ONEDOC_API_KEY);
 
 let doc = {
   html: renderToString(<PDFTemplate name="Bruce Wayne" />),
-  metadata: {
-    title: "Hello",
-    author: "Batman",
-    subject: "A simple doc to say hello.",
-  },
-  prod: false,
+  title: "Invoice",
   assets: [
     {
       path: "stylesheet.css",
