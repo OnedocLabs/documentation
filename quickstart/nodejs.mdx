@@ -43,30 +43,60 @@ pnpm add @onedoc/client
 
 </CodeGroup>
 
-## 2. Generate your PDF
+## 2. Create a document template
 
-Within your Node.js application, you can use the Onedoc SDK to generate your PDF. Here is a simple example:
+Start by creating your document template on `components/pdf-template.js`.<br/>Your file must export a React component.
+
+```javascript components/pdf-template.js
+import * as React from 'react';
+
+export const PDFTemplate = ({props}) => {
+
+    return (
+      <div>
+        <h1> Hello {props.name} !</h1>
+      </div>
+  );
+};
+
+```
+## 3. Generate your PDF 
+Get your API key at https://app.onedoclabs.com/.
+
+Import the React document template and generate a PDF using your `ONEDOC_API_KEY` and your main React component.
 
 <CodeGroup>
 
 ```javascript app/api/generate/route.js
-import { Onedoc } from "@onedoc/client";
-import fs from "fs";
+import { PDFTemplate } from './components/PDFTemplate';
+import { Onedoc } from '@onedoc/client"';
+import fs from 'fs';
 
 const onedoc = new Onedoc(process.env.ONEDOC_API_KEY);
 
-const { file, info, error } = await onedoc.render({
-  owner: "Auguste <onboarding@onedoc.dev>",
-  html: "<h1>Hello World</h1>",
-  assets: [],
-});
+let doc = {
+        html: renderToString(<PDFTemplate props={"name":"Bruce Wayne"} />), // build dynamic documents by passing props
+        metadata: {
+          title: "Hello",
+          author: "Batman",
+          subject: "A simple doc to say hello.",
+        },
+        prod:false,
+        assets:[
+                { path:"./stylesheet.css", content: fs.readFileSync(path.join(process.cwd(),'stylesheet.css')).toString() }
+              ]
+       };
+  
+const pdf = await onedoc.render(doc);
+const pdfBuffer = Buffer.from(pdf);
 
-fs.writeFileSync("hello-world.pdf", Buffer.from(file));
 ```
-
 </CodeGroup>
 
-## 3. Try it yourself
+Stylesheets and other referenced assets should be passed in the `asset` parameter. If you are using a framework such as Tailwind, you must submit a <b>compiled stylesheet</b> that can be applied to a HTML file that contains the compiled React component. <br/>
+You must upload the content of your asset in string format in the `content` field.
+
+## 4. Try it yourself
 
 <CardGroup cols={2}>
   <Card
