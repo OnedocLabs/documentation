@@ -50,20 +50,34 @@ The render function takes a document object and a boolean (dev) as an argument a
 
 #### Parameters
 
+<ResponseField name="document" type="object" required>
 The `document` object has the following properties:
+</ResponseField>
+| name   | type                             | optional | default | description |
+| ------ | -------------------------------- | -------- | ------- | ----------- |
+| html   | `string`                         | `false`  | `n/a`   | The html for your document ( for react, use renderToString)            |
+| title  | `string`                         | `true`   | `n/a`   | The PDF's title            |
+| assets | `PathString[] \| PathBuffer[]`   | `true`   | `n/a`   | A list of objects \{`path`, `content`\}, where `path`is a relative path from which the html should import the asset. `content` is the Buffer or string content of the asset.|
 
-| name   | type                           | optional | default | description |
-| ------ | ------------------------------ | -------- | ------- | ----------- |
-| html   | `string`                       | `false`  | `n/a`   |             |
-| title  | `string`                       | `true`   | `n/a`   |             |
-| assets | `PathString[] \| PathBuffer[]` | `true`   | `n/a`   |             |
+Stylesheets should be loaded as assets. In the event where frameworks such as TailwindCss are used, remember to upload the compiled
 
-`dev`is an optional boolean parameter that determines whether a document is rendered with a watermark or not. Default value is false.
+<ResponseField name="dev" type="boolean" default="false">
+`dev`is an optional boolean parameter that determines whether a document is rendered with a watermark or not. Dev document renderings are free and can be made infinitely many times. Default value is false.
+</ResponseField>
+
+<ResponseField name="save" type="boolean" default="false">
+`save`is an optional boolean parameter that determines whether a document should be saved temporarily. It is saved for as many days as provided in the `expiresIn` parameter. It can be downloaded anytime via a download link. Default value is false.
+</ResponseField>
+
+<ResponseField name="expiresIn" type="integer" default="1">
+`expiresIn`is an optional integer parameter that determines for how long a document should be downloadable. Maximum duration is **90** days. This field is only effective if `save`is true. Default value is false.
+</ResponseField>
 
 #### Returns (promise)
 
 | name  | type                  | description            |
 | ----- | --------------------- | ---------------------- |
 | file  | `arrayBuffer \| null` | The rendered PDF file. |
+| link  | `string \| null`      | The download link for saved documents. |
 | info  | `object \| null`      | The render metadata.   |
 | error | `string \| null`      | The render error.      |

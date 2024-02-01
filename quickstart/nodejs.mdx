@@ -81,7 +81,7 @@ let doc = {
   title: "Invoice",
   assets: [
     {
-      path: "stylesheet.css",
+      path: "./stylesheet.css",
       content: fs
         .readFileSync(path.join(process.cwd(), "stylesheet.css"))
         .toString(),
@@ -89,7 +89,7 @@ let doc = {
   ],
 };
 
-const { file, info, error } = await onedoc.render(doc);
+const { file, info, error } = await onedoc.render(doc, dev = false), //dev = false renders the document with a watermark);
 
 if (error) {
   throw error;
@@ -101,7 +101,7 @@ writeFileSync("hello.pdf", Buffer.from(file));
 </CodeGroup>
 
 Stylesheets and other referenced assets should be passed in the `asset` parameter. If you are using a framework such as Tailwind, you must submit a <b>compiled stylesheet</b> that can be applied to a HTML file that contains the compiled React component. <br/>
-You must upload the content of your asset in string format in the `content` field.
+You must upload the content of your asset in string or Buffer format in the `content` field.
 
 ## 4. Try it yourself
 
