@@ -107,7 +107,9 @@
     {
       "group": "Endpoint Examples",
       "pages": [
+        "api-reference/endpoint/initiates-a-documents-rendering",
         "api-reference/endpoint/generates-a-pdf-from-a-specified-bucket"
+
       ]
     }
     
@@ -117,5 +119,5 @@
     "github": "https://github.com/OnedocLabs/onedoc",
     "linkedin": "https://www.linkedin.com/company/onedoclabs"
   },
-  "openapi":"http://localhost:3001/api/api-doc"
+  "openapi":"https://www.onedoclabs.com/api/api-doc"
 }
