@@ -1,0 +1,76 @@
+---
+title: Frontmatter
+description: Formating made easy.
+icon: test
+---
+---
+The `Frontmatter` component provides a convenient way to access and format frontmatter metadata within your React application. It utilizes React's Context API to allow access to frontmatter data throughout the component tree without having to pass props down manually.
+
+## Usage
+
+First, wrap your component tree with the `FrontmatterProvider` and pass in your frontmatter data:
+
+```jsx
+import { FrontmatterProvider } from '@onedoc/react-print';
+
+const frontmatterData = {
+  title: "Sample Title",
+  date: "2021-01-01",
+};
+
+<FrontmatterProvider frontmatter={frontmatterData}>
+  <YourComponent />
+</FrontmatterProvider>
+```
+
+Then, use the `Frontmatter` component to access and format a specific frontmatter field:
+
+```jsx
+import { Frontmatter } from '@onedoc/react-print';
+
+const YourComponent = () => (
+  <div>
+    <h1><Frontmatter field="title" /></h1>
+    <p>Published: <Frontmatter field="date" formatter={formatters.date('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} /></p>
+  </div>
+);
+```
+
+## Props
+
+### `FrontmatterProvider`
+
+- **frontmatter**: `Frontmatter` - An object containing your frontmatter data.
+- **children**: `React.ReactNode` - The child components that will have access to the frontmatter context.
+
+### `Frontmatter`
+
+- **field**: `string` - The key of the frontmatter data you want to access.
+- **placeholder**? (optional): `string` - A placeholder string to display if the frontmatter field is not found or is empty.
+- **formatter**? (optional): `(value: string) => string` - A function to format the frontmatter field value. By default, it returns the raw value.
+- **optional**? (optional): `boolean` - If `true`, renders nothing when the frontmatter field is not found. Defaults to `false`, which will render the placeholder or a default string indicating the missing field.
+
+## Formatters
+
+A set of predefined formatters is available to format frontmatter fields:
+
+- **date**: Formats a date string using `Intl.DateTimeFormat`.
+  - `language`: `string` - The locale to use for formatting.
+  - `options`: `Intl.DateTimeFormatOptions` - Options to customize the date format.
+- **raw**: Returns the raw value of the field.
+
+## Hooks
+
+### `useFrontmatter`
+
+Allows you to directly access a frontmatter field's value within a component:
+
+```jsx
+const title = useFrontmatter('title');
+```
+
+- **field**: `string` - The key of the frontmatter data you want to access.
+
+This component and hooks setup simplifies the handling of metadata in your application, making it easy to display and format frontmatter data wherever needed.
+
+---

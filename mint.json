@@ -58,6 +58,11 @@
       "url": "reference"
     },
     {
+      "name": "React-print",
+      "icon": "react",
+      "url": "components"
+    },
+    {
       "name": "Community",
       "icon": "discord",
       "url": "https://discord.com/invite/uRJE6e2rgr"
@@ -80,7 +85,7 @@
     },
     {
       "group": "Components",
-      "pages": ["components/introduction", "components/general"]    
+      "pages": ["components/introduction", "components/Shell", "components/Footnote", "components/Frontmatter", "components/RunningHeader", "components/FileMetadata", "components/Trackbox", "components/Signature"]    
     },
     {
       "group": "Quick Start",
@@ -120,7 +125,7 @@
     "github": "https://github.com/OnedocLabs/onedoc",
     "linkedin": "https://www.linkedin.com/company/onedoclabs"
   },
-  "openapi":"http://localhost:3000/api/api-doc",
+  "openapi":"https://app.onedoclabs.com/api/api-doc",
   "api": {
     "baseUrl": "https://app.onedoclabs.com"
   }

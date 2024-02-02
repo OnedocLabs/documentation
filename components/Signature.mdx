@@ -1,0 +1,83 @@
+---
+title: Signature
+description: PDF signatures, but easy.
+icon: shell
+---
+---
+
+The `Signature` and `Signatures` components are designed to display signature blocks for companies and representatives, integrating tracking capabilities for interactions. These components are ideal for use in documents, contracts, or any application requiring signature acknowledgments.
+
+## Signature Component
+
+The `Signature` component displays a signature block with optional company and representative names, and includes a `TrackBox` for tracking interactions.
+
+### Usage
+
+```jsx
+import { Signature, SigTypes } from ".@onedoc/react-print";
+
+const YourComponent = () => (
+  <Signature
+    company="Company Name"
+    representative="Representative Name"
+    tag={SigTypes.CONTRACT}
+  />
+);
+```
+
+### Props
+
+- **company**? (optional): `string` - The name of the company to display in the signature block.
+- **representative**? (optional): `string` - The name of the representative to display in the signature block.
+- **tag**: `SigTypes` - A tag from `SigTypes` enum to categorize the signature type, used for tracking purposes.
+
+### Styling
+
+The component uses Tailwind CSS classes for styling:
+
+- The signature block is styled with a bottom border, and text sizes are adjusted for company and representative names.
+- Flexbox is used to align content within the signature block.
+
+## Signatures Component
+
+The `Signatures` component is a container for multiple `Signature` components, arranging them in a flexible, responsive layout.
+
+### Usage
+
+```jsx
+import { Signature, Signatures, SigTypes } from "@onedoc/react-print";
+
+const SignatureCollection = () => (
+  <Signatures>
+    <Signature
+      company="Company One"
+      representative="Rep One"
+      tag={SigTypes.CONTRACT}
+    />
+    <Signature
+      company="Company Two"
+      representative="Rep Two"
+      tag={SigTypes.AGREEMENT}
+    />
+  </Signatures>
+);
+```
+
+### Props
+
+- **children**: `React.ReactNode` - One or more `Signature` components to be displayed within the `Signatures` container.
+
+### Styling
+
+The `Signatures` component utilizes Tailwind CSS for its layout, including:
+
+- Flex wrap to accommodate multiple signature blocks within a flexible container.
+- Padding and margins are applied for consistent spacing between signature blocks.
+
+## Integration
+
+These components can be seamlessly integrated into your application to display signature blocks with elegance and functionality. The `TrackBox` embedded within the `Signature` component allows for easy tracking of user interactions, making these components not only visually appealing but also functional.
+
+---
+
+This documentation provides a comprehensive guide on using the `Signature` and `Signatures` components, including examples, prop descriptions, and details on styling. These components offer a standardized way to display signatures while enabling tracking and analytics.

@@ -1,0 +1,53 @@
+---
+title: Trackbox
+description: Trackbox for signatures.
+icon: trackbox
+---
+---
+The `TrackBox` component is designed to facilitate tracking interactions within a specified container. It leverages HTML data attributes to tag elements for analytics or tracking purposes.
+
+## Usage
+
+The component accepts a `tag` prop to specify the tracking identifier and can wrap any child elements. Additional HTML div attributes can also be passed to customize the container.
+
+### Example
+
+```jsx
+import { TrackBox } from "@onedoc/react-print";
+
+const YourComponent = () => (
+  <TrackBox tag="unique-tag-identifier" className="custom-class">
+    <p>Content to be tracked</p>
+  </TrackBox>
+);
+```
+
+This example demonstrates how to use the `TrackBox` to wrap content that requires tracking, assigning it a unique tag identifier and an optional CSS class for styling.
+
+### Props
+
+- **tag**: `string` - A unique identifier used for tracking interactions within the `TrackBox`. This value is set as a data attribute (`data-track-box`) on the div element.
+- **children**? (optional): `React.ReactNode` - The content or elements to be rendered inside the `TrackBox`. If not provided, the box will render as an empty container.
+- Inherits all standard HTML div attributes (`React.HTMLAttributes<HTMLDivElement>`), allowing for additional customization such as `className`, `style`, and event handlers.
+
+## Styling
+
+While `TrackBox` does not come with predefined styles, it accepts standard HTML div attributes, including `className` and `style`, enabling custom styling:
+
+```css
+.custom-class {
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+```
+
+Customize the appearance as needed by applying CSS classes or inline styles directly through the component's props.
+
+## Integration
+
+`TrackBox` is versatile and can be integrated into any part of your application that requires tracking, from user interactions to visibility tracking. Its implementation ensures that tracking logic can be centralized or easily managed across different components or sections of your application.
+
+---
+
+This documentation provides an overview of the `TrackBox` component, detailing its purpose, usage, and how to customize it. The component simplifies the process of tagging and tracking specific parts of your application for analytics or interaction tracking purposes.

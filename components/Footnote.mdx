@@ -1,0 +1,36 @@
+---
+title: Footnote
+description: Design footnotes easily.
+icon: foot
+---
+---
+This component is designed to create an automatically numbered footnote within your document. It supports rich text for detailed annotations or references.
+
+## Usage
+
+The `Footnote` component is used to embed footnote references directly within your content. It can contain any React node, allowing for flexible usage with both plain text and more complex elements.
+
+### Example
+
+```jsx
+<Footnote>
+  This is an example footnote with <strong>rich text</strong> capabilities.
+</Footnote>
+```
+
+### Props
+
+- **children**: `React.ReactNode` - The content of the footnote. Supports rich text formatting, enabling the inclusion of elements like `<strong>`, `<em>`, or any other valid HTML/React components.
+
+### Styling
+
+The component comes with predefined styling for a footnote appearance:
+
+- **Class Name**: `--docify-footnote` - Applies basic styling for footnotes.
+- **Text Alignment**: `text-left` - Ensures that the footnote text is aligned to the left.
+- **Font Size**: `text-xs` - Sets the font size to extra small for a subtle appearance.
+- **Font Weight**: `font-normal` - Uses the normal font weight for footnote text.
+
+You can further customize the appearance using additional CSS rules targeting the `--docify-footnote` class in your custom stylesheet.
+
+---
