@@ -71,7 +71,7 @@
     {
       "name": "Templates",
       "icon": "book",
-      "url": "[templates/intro]"
+      "url": "templates/intro"
     }
   ],
   "navigation": [
@@ -119,5 +119,5 @@
     "github": "https://github.com/OnedocLabs/onedoc",
     "linkedin": "https://www.linkedin.com/company/onedoclabs"
   },
-  "openapi":"https://www.onedoclabs.com/api/api-doc"
+  "openapi":"https://ondoclabs.com/api/api-doc"
 }
