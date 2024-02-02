@@ -89,7 +89,7 @@
     },
     {
       "group": "Quick Start",
-      "pages": ["quickstart/nodejs", "quickstart/python"]
+      "pages": ["quickstart/nodejs"]
     },
     {
       "group": "Ressources",
