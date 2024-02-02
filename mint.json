@@ -109,15 +109,16 @@
       "pages": [
         "api-reference/endpoint/initiates-a-documents-rendering",
         "api-reference/endpoint/generates-a-pdf-from-a-specified-bucket"
-
       ]
     }
-    
   ],
   "footerSocials": {
     "twitter": "https://twitter.com/Onedoclabs",
     "github": "https://github.com/OnedocLabs/onedoc",
     "linkedin": "https://www.linkedin.com/company/onedoclabs"
   },
-  "openapi":"https://onedoclabs.com/api/api-doc"
+  "openapi":"https://app.onedoclabs.com/api/api-doc",
+  "api": {
+    "baseUrl": "https://app.onedoclabs.com"
+  }
 }

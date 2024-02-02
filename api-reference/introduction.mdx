@@ -10,7 +10,7 @@ You can fin the open API JSON file below.
 <Card
   title="Onedoc API endpoints"
   icon="leaf"
-  href="https://ondoclabs.com/api/api-doc"
+  href="https://app.onedoclabs.com/api/api-doc"
 >
   View the OpenAPI specification file
 </Card>
@@ -29,28 +29,12 @@ All API endpoints are authenticated using an API key and picked up from the requ
 
 ## Usage
 
-In order to render a document, intiate rending with [docs/initiate](/API-reference/endpoint/initiates-a-documents-rendering).
+### 1. Initiate document rendering
+In order to render a document, intiate rending with [api/docs/initiate](/API-reference/endpoint/initiates-a-documents-rendering).
+This step returns a list of signed buckets to which you should upload your assets' content.
 
-<CodeGroup>
-```bash /api/docs/initiate usage
-curl --location '/api/docs/initiate' \
---header 'Content-Type: application/json' \
---header 'Accept: application/json' \
---header 'x-api-Key: [API_KEY]' \
---data '{
-  "assets": [
-    {
-      "path": "<string>",
-      "content": "<string>|<Buffer>"
-    },
-    {
-      "path": "<string>",
-      "content": "<string>|<Buffer>"
-    }
-  ]
-}'
-```
-</CodeGroup>
+### 2. Upload your assets to their respective buckets using signedUrls.
+
 Then, upload all your assets to the paths you the specified in the intiate using the returned signed Urls. 
 Uploading an asset using a signed Url consists in sending a `PUT` request with the token and the asset. For further help, see .
 Below is a helper function to upload assets to a bucket using a signed Url for <b>Node JS</b>. This implementation is specific to [supabase](https://www.npmjs.com/package/@supabase/storage-js?activeTab=code), specifically in our URL and path management.
@@ -113,21 +97,6 @@ async function uploadToSignedUrl(
 }
 ```
 </CodeGroup>
-Finally, generate your PDF document with /docs/generate.
 
-<CodeGroup>
-```bash /api/docs/generate usage
-curl --location '//api/docs/generate' \
---header 'Content-Type: application/json' \
---header 'Accept: application/pdf' \
---header 'x-api-Key: [API_KEY]' \
---data '{
-  "bucket": "<string>",
-  "password": "<string>",
-  "username": "<string>",
-  "test": true,
-  "save": false,
-  "expiresIn": "<integer>"
-}'
-```
-</CodeGroup>
+### 3. Generate your document by specifying your bucket identifier, auth and options.
+You can generate your document using  [api/docs/generate](/API-reference/endpoint/generates-a-pdf-from-a-specified-bucket).
