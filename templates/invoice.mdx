@@ -254,7 +254,7 @@ import InvoiceTemplate from "./invoiceTemplate.js"
 import { renderToString } from 'react-dom/server';
 import { Onedoc } from "@onedoc/client"
 
-let onedoc = new Onedoc("ebec0c4c-214f-4796-afd2-b5c9b12281b6")
+let onedoc = new Onedoc(process.env.ONEDOC_API_KEY)
 
 const data = {"invoiceNumber":"23213146", ...} // load data for template
 
