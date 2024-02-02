@@ -35,7 +35,6 @@
       "to": "#606060"
     }
   },
-
   "topbarLinks": [
     { "name": "Private Beta Access", "url": "https://www.onedoclabs.com/" },
     {
@@ -45,7 +44,7 @@
   ],
   "topbarCtaButton": {
     "name": "Get Started",
-    "url": "https://www.onedoclabs.com/"
+    "url": "https://app.onedoclabs.com/"
   },
   "anchors": [
     {
@@ -78,6 +77,10 @@
     {
       "group": "General",
       "pages": ["introduction", "gettoknowus"]
+    },
+    {
+      "group": "Components",
+      "pages": ["components/introduction", "components/general"]    
     },
     {
       "group": "Quick Start",
@@ -117,7 +120,7 @@
     "github": "https://github.com/OnedocLabs/onedoc",
     "linkedin": "https://www.linkedin.com/company/onedoclabs"
   },
-  "openapi":"https://app.onedoclabs.com/api/api-doc",
+  "openapi":"http://localhost:3000/api/api-doc",
   "api": {
     "baseUrl": "https://app.onedoclabs.com"
   }
