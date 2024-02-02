@@ -49,6 +49,11 @@
   },
   "anchors": [
     {
+      "name": "API Reference",
+      "icon": "server",
+      "url": "api-reference"
+    },
+    {
       "name": "SDK Reference",
       "icon": "code",
       "url": "reference"
@@ -94,11 +99,23 @@
     {
       "group": "SDK Reference",
       "pages": ["reference/nodejs"]
+    },
+    {
+      "group": "API Reference",
+      "pages": ["api-reference/introduction"]
+    }, 
+    {
+      "group": "Endpoint Examples",
+      "pages": [
+        "api-reference/endpoint/generates-a-pdf-from-a-specified-bucket"
+      ]
     }
+    
   ],
   "footerSocials": {
     "twitter": "https://twitter.com/Onedoclabs",
     "github": "https://github.com/OnedocLabs/onedoc",
     "linkedin": "https://www.linkedin.com/company/onedoclabs"
-  }
+  },
+  "openapi":"http://localhost:3001/api/api-doc"
 }
