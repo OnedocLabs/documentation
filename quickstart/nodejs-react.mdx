@@ -78,7 +78,7 @@ export const PDFTemplate = ({ name }) => {
 };
 ```
 
-and optionally, a stylesheet, in the root directory:
+and optionally, a stylesheet named `stylesheet.css`, in the `root` directory:
 
 ```css ./stylesheet.css
 body {
@@ -88,7 +88,7 @@ body {
 
 ## 3. Generate your PDF
 
-Import the React document template and generate a PDF using your `ONEDOC_API_KEY` and your main React component.
+Create a Import the React document template and generate a PDF using your `ONEDOC_API_KEY` and your main React component.
 
 <CodeGroup>
 
@@ -130,6 +130,13 @@ const ONEDOC_API_KEY = "####-####-####-####” // replace with your api key
 ```
 
 </CodeGroup>
+
+You are almost done ! Run the script using the following command : 
+
+```sh terminal
+npx tsx ./generate.tsx
+```
+
 
 Stylesheets and other referenced assets should be passed in the `asset` parameter. If you are using a framework such as Tailwind, you must submit a <b>compiled stylesheet</b> that can be applied to a HTML file that contains the compiled React component. <br/>
 
