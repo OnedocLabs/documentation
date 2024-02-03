@@ -30,7 +30,7 @@ All API endpoints are authenticated using an API key and picked up from the requ
 ## Usage
 
 ### 1. Initiate document rendering
-In order to render a document, intiate rending with [api/docs/initiate](/API-reference/endpoint/initiates-a-documents-rendering).
+In order to render a document, intiate rending with [api/docs/initiate](/api-reference/endpoint/initiates-a-documents-rendering).
 This step returns a list of signed buckets to which you should upload your assets' content.
 
 ### 2. Upload your assets to their respective buckets using signedUrls.
@@ -99,4 +99,4 @@ async function uploadToSignedUrl(
 </CodeGroup>
 
 ### 3. Generate your document by specifying your bucket identifier, auth and options.
-You can generate your document using  [api/docs/generate](/API-reference/endpoint/generates-a-pdf-from-a-specified-bucket).
+You can generate your document using  [api/docs/generate](/api-reference/endpoint/generates-a-pdf-from-a-specified-bucket).
