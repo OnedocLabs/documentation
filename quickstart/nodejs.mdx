@@ -62,7 +62,7 @@ export const PDFTemplate = ({ name }) => {
 
 and optionally, a stylesheet:
 
-```css stylesheet.js
+```css stylesheet.css
 body {
   background-color: lightblue;
 }
@@ -89,6 +89,8 @@ let doc = {
     html: renderToString(<PDFTemplate name="Bruce Wayne" />),
     title: "Hello",
     test: true,
+    save: true,
+    expiresIn: 30,
     assets: [
       {
         path: "./stylesheet.css",
@@ -103,7 +105,7 @@ if (error) {
   throw error;
 }
 
-writeFileSync("./hello.pdf", Buffer.from(file));
+console.log(link)
 ```
 
 </CodeGroup>
