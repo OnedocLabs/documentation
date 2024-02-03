@@ -950,10 +950,8 @@ const data = {}; // load data for template
 
 let doc = {
   html: renderToString(<InvoiceTemplate props={data} />),
-  metadata: {
-    title: "Document title",
-    test: true,
-  },
+  title: "Document title",
+  test: true,
   assets: [
     {
       path: "./tailwindCompiled.css",
