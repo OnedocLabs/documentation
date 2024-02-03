@@ -932,6 +932,7 @@ import InvoiceTemplate from "./invoice"
 import { renderToString } from 'react-dom/server';
 import { Onedoc } from "@onedoc/client"
 import { readFileSync, writeFileSync } from "fs";
+import { join } from "path";
 
 let onedoc = new Onedoc(process.env.ONEDOC_API_KEY)
 
@@ -944,7 +945,7 @@ let doc = {
             test: true,
           },
           assets:[
-                  { path:"./tailwindCompiled.css", content: readFileSync(path.join(process.cwd(), 'tailwindCompiled.css')).toString() } 
+                  { path:"./tailwindCompiled.css", content: readFileSync(join(process.cwd(), 'tailwindCompiled.css')).toString() } 
                 ]
          };
   
