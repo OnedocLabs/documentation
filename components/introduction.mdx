@@ -34,10 +34,10 @@ Import a component as follow:
 import { PageTop, PageBottom, PageBreak } from "@onedoc/react-print";
 ```
 
-## 3. Integrate in your document:
+## 3. Integrate in your document
 
 ```jsx
-export const document = ({ props }) => {
+export const Document = ({ props }) => {
   return (
     <div>
       <PageTop>
@@ -52,4 +52,35 @@ export const document = ({ props }) => {
     </div>
   );
 };
+```
+
+## 4. Add the stylesheet
+
+To use the default styles, add the following stylesheet to your document when rendering.
+
+```jsx generate.js
+const onedoc = new Onedoc(ONEDOC_API_KEY);
+
+let doc = {
+  html: renderToString(<PDFTemplate name="Bruce Wayne" />),
+  title: "Hello",
+  test: true,
+  save: true,
+  expiresIn: 30,
+  assets: [
+    {
+      path: "./stylesheet.css",
+      content: readFileSync(join(process.cwd(), "stylesheet.css")).toString(),
+    },
+    /** NOTE: Add the stylesheet */
+    {
+      path: "./react-print.css",
+      content: readFileSync(
+        require.resolve("@onedoc/react-print/dist/index.css")
+      ).toString(),
+    },
+  ],
+};
+
+const { file, link, error, info } = await onedoc.render(doc);
 ```

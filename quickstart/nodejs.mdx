@@ -67,6 +67,7 @@ body {
   background-color: lightblue;
 }
 ```
+
 ## 3. Generate your PDF
 
 Get your API key at https://app.onedoclabs.com/.
@@ -78,7 +79,7 @@ Import the React document template and generate a PDF using your `ONEDOC_API_KEY
 ```javascript generate.js
 import React from "react";
 import { PDFTemplate } from "./components/pdf-template";
-import { Onedoc } from '@onedoc/client';
+import { Onedoc } from "@onedoc/client";
 import { readFileSync, writeFileSync } from "fs";
 import { renderToString } from "react-dom/server";
 import { join } from "path";
@@ -87,18 +88,18 @@ import { join } from "path";
   const onedoc = new Onedoc(ONEDOC_API_KEY);
 
   let doc = {
-      html: renderToString(<PDFTemplate name="Bruce Wayne" />),
-      title: "Hello",
-      test: true,
-      save: true,
-      expiresIn: 30,
-      assets: [
-        {
-          path: "./stylesheet.css",
-          content: readFileSync(join(process.cwd(), "stylesheet.css")).toString(),
-        },
-      ],
-    };
+    html: renderToString(<PDFTemplate name="Bruce Wayne" />),
+    title: "Hello",
+    test: true,
+    save: true,
+    expiresIn: 30,
+    assets: [
+      {
+        path: "./stylesheet.css",
+        content: readFileSync(join(process.cwd(), "stylesheet.css")).toString(),
+      },
+    ],
+  };
 
   const { file, link, error, info } = await onedoc.render(doc);
 
@@ -106,10 +107,8 @@ import { join } from "path";
     throw error;
   }
 
-  console.log(link)
-
-})()
-
+  console.log(link);
+})();
 ```
 
 </CodeGroup>

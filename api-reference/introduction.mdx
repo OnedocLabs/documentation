@@ -1,6 +1,6 @@
 ---
-title: 'Introduction'
-description: 'API endpoints for document generation'
+title: "Introduction"
+description: "API endpoints for document generation"
 ---
 
 ## Welcome
@@ -30,12 +30,13 @@ All API endpoints are authenticated using an API key and picked up from the requ
 ## Usage
 
 ### 1. Initiate document rendering
+
 In order to render a document, intiate rending with [api/docs/initiate](/api-reference/endpoint/initiates-a-documents-rendering).
 This step returns a list of signed buckets to which you should upload your assets' content.
 
 ### 2. Upload your assets to their respective buckets using signedUrls.
 
-Then, upload all your assets to the paths you the specified in the intiate using the returned signed Urls. 
+Then, upload all your assets to the paths you the specified in the intiate using the returned signed Urls.
 Uploading an asset using a signed Url consists in sending a `PUT` request with the token and the asset. For further help, see .
 Below is a helper function to upload assets to a bucket using a signed Url for <b>Node JS</b>. This implementation is specific to [supabase](https://www.npmjs.com/package/@supabase/storage-js?activeTab=code), specifically in our URL and path management.
 
@@ -51,12 +52,12 @@ async function uploadToSignedUrl(
   const url = new URL(urlToFS + `/object/upload/sign/${path}`);
   url.searchParams.set("token", token);
 
-  try {
-    let body;
-    const options = { upsert: DEFAULT_FILE_OPTIONS.upsert, ...fileOptions };
-    const headers: Record<string, string> = {
-      ...{ "x-upsert": String(options.upsert as boolean) },
-    };
+try {
+let body;
+const options = { upsert: DEFAULT_FILE_OPTIONS.upsert, ...fileOptions };
+const headers: Record<string, string> = {
+...{ "x-upsert": String(options.upsert as boolean) },
+};
 
     if (typeof Blob !== "undefined" && fileBody instanceof Blob) {
       body = new FormData();
@@ -91,12 +92,15 @@ async function uploadToSignedUrl(
       const error = data;
       return { data: null, error };
     }
-  } catch (error) {
-    throw error;
-  }
+
+} catch (error) {
+throw error;
 }
+}
+
 ```
 </CodeGroup>
 
 ### 3. Generate your document by specifying your bucket identifier, auth and options.
 You can generate your document using  [api/docs/generate](/api-reference/endpoint/generates-a-pdf-from-a-specified-bucket).
+```

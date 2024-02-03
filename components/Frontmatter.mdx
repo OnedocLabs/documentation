@@ -5,6 +5,7 @@ icon: test
 ---
 
 ---
+
 The `Frontmatter` component provides a convenient way to access and format frontmatter metadata within your React application. It utilizes React's Context API to allow access to frontmatter data throughout the component tree without having to pass props down manually.
 
 ## Usage
@@ -12,7 +13,7 @@ The `Frontmatter` component provides a convenient way to access and format front
 First, wrap your component tree with the `FrontmatterProvider` and pass in your frontmatter data:
 
 ```jsx
-import { FrontmatterProvider } from '@onedoc/react-print';
+import { FrontmatterProvider } from "@onedoc/react-print";
 
 const frontmatterData = {
   title: "Sample Title",
@@ -21,18 +22,30 @@ const frontmatterData = {
 
 <FrontmatterProvider frontmatter={frontmatterData}>
   <YourComponent />
-</FrontmatterProvider>
+</FrontmatterProvider>;
 ```
 
 Then, use the `Frontmatter` component to access and format a specific frontmatter field:
 
 ```jsx
-import { Frontmatter } from '@onedoc/react-print';
+import { Frontmatter } from "@onedoc/react-print";
 
 const YourComponent = () => (
   <div>
-    <h1><Frontmatter field="title" /></h1>
-    <p>Published: <Frontmatter field="date" formatter={formatters.date('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} /></p>
+    <h1>
+      <Frontmatter field="title" />
+    </h1>
+    <p>
+      Published:{" "}
+      <Frontmatter
+        field="date"
+        formatter={formatters.date("en-US", {
+          month: "long",
+          day: "numeric",
+          year: "numeric",
+        })}
+      />
+    </p>
   </div>
 );
 ```
@@ -67,7 +80,7 @@ A set of predefined formatters is available to format frontmatter fields:
 Allows you to directly access a frontmatter field's value within a component:
 
 ```jsx
-const title = useFrontmatter('title');
+const title = useFrontmatter("title");
 ```
 
 - **field**: `string` - The key of the frontmatter data you want to access.
