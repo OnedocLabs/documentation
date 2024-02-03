@@ -59,8 +59,8 @@ The `document` object has the following properties:
 | ------ | -------------------------------- | -------- | ------- | ----------- |
 | html   | `string`                         | `false`  | `n/a`   | The html for your document ( for react, use renderToString)            |
 | title  | `string`                         | `true`   | `n/a`   | The PDF's title            |
-| test   | `string`                         | `true`   | `true`  | Determines whether a document is rendered with a watermark or not. Dev document renderings are free and can be made infinitely many times            |
-| save   | `string`                         | `true`   | `false` | Determines whether a document should be saved temporarily. It is saved for as many days as provided in the `expiresIn` parameter. It can be downloaded anytime via a download link            |
+| test   | `boolean`                         | `true`   | `true`  | Determines whether a document is rendered with a watermark or not. Dev document renderings are free and can be made infinitely many times            |
+| save   | `boolean`                         | `true`   | `false` | Determines whether a document should be saved temporarily. It is saved for as many days as provided in the `expiresIn` parameter. It can be downloaded anytime via a download link            |
 | expiresIn  | `integer`                    | `true`   | `1`     | Determines for how long a document should be downloadable. Maximum duration is **90** days. This field is only effective if `save`is true         |
 | assets | `PathString[] \| PathBuffer[]`   | `true`   | `n/a`   | A list of objects \{`path`, `content`\}, where `path`is a relative path from which the html should import the asset. `content` is the Buffer or string content of the asset|
 
@@ -74,5 +74,3 @@ Stylesheets should be loaded as assets. In the event where frameworks such as Ta
 | link  | `string \| null`      | The download link for `save` = true documents. |
 | info  | `object \| null`      | The render metadata.                           |
 | error | `string \| null`      | The render error.                              |
-
----
