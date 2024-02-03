@@ -94,7 +94,7 @@
     },
     {
       "group": "Quick Start",
-      "pages": ["quickstart/nodejs", "quickstart/nodejs-react"]
+      "pages": ["quickstart/nodejs", "quickstart/nodejs-react", "quickstart/nodejs-next"]
     },
     {
       "group": "Ressources",
