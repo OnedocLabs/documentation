@@ -76,29 +76,30 @@ Import the React document template and generate a PDF using your `ONEDOC_API_KEY
 <CodeGroup>
 
 ```javascript generate.js
+import React from "react";
 import { PDFTemplate } from "./components/pdf-template";
-import { Onedoc } from '@onedoc/client"';
+import { Onedoc } from '@onedoc/client';
 import { readFileSync, writeFileSync } from "fs";
 import { renderToString } from "react-dom/server";
+import { join } from "path";
 
-const onedoc = new Onedoc("ebec0c4c-214f-4796-afd2-b5c9b12281b6");
+const onedoc = new Onedoc([ONEDOC_API_KEYTOKEN]);
 
 let doc = {
-  html: renderToString(<PDFTemplate name="Bruce Wayne" />),
-  title: "Hello",
-  assets: [
-    {
-      path: "./stylesheet.css",
-      content: readFileSync(path.join(process.cwd(), "stylesheet.css"))
-        .toString(),
-    },
-  ],
-};
+    html: renderToString(<PDFTemplate name="Bruce Wayne" />),
+    title: "Hello",
+    assets: [
+      {
+        path: "./stylesheet.css",
+        content: readFileSync(join(process.cwd(), "stylesheet.css")).toString(),
+      },
+    ],
+  };
 
-const { file, info, error } = await onedoc.render(doc, dev = false); //dev = false renders the document with a watermark);
+const { file, info, error } = await onedoc.render(doc, true); //dev = false renders the document with a watermark);
 
 if (error) {
-  throw error;
+    throw error;
 }
 
 writeFileSync(",/hello.pdf", Buffer.from(file));
