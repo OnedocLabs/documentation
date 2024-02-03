@@ -10,21 +10,20 @@ icon: node-js
   to get access and try our solution.{" "}
 </Warning>
 
-<Tip>
-  If you have any troubles getting started, don't hesitate to contact our
-  [**support
-  team**](mailto:contact@onedoclabs.com?subject=Support%20request&body=Describe%20your%20issue%20and%20our%20team%20will%20get%20back%20to%20you%20as%20soon%20as%20possible.)
-  !
-</Tip>
 
 ## Prerequisites
 
 To get the most out of this guide, you'll need to:
 
-- [Sign-up/in to Onedoc](https://app.onedoclabs.com/)
+- [Sign-up/in to Onedoc](https://app.onedoclabs.com/login)
 - [Generate your API Key](https://app.onedoclabs.com/)
 
 ## 1. Installation
+If you did not have set up a NodeJS project, you can use the following command to do so: 
+
+```sh npm
+npm init -y
+```
 
 Get the Onedoc Node.js SDK
 
@@ -46,9 +45,7 @@ pnpm add @onedoc/client
 
 ## 2. Generate your PDF
 
-Get your API key at https://app.onedoclabs.com/.
-
-Import the React document template and generate a PDF using your `ONEDOC_API_KEY` and your main React component.
+Creat a new file `generate.js`, import the React document template and generate a PDF using your `ONEDOC_API_KEY`.
 
 <CodeGroup>
 
@@ -79,3 +76,15 @@ import { readFileSync, writeFileSync } from "fs";
 ```
 
 </CodeGroup>
+
+You are almost done ! Run the script using the following command : 
+
+```sh terminal
+node ./generate.js
+```
+
+## 4. Congratulations !
+
+You just created your first PDF using Onedoc Node.js. You can now access your private [dashboard](https://app.onedoclabs.com/) to preview and download your PDF. <br/>
+
+Ready to learn more ? Take a look at our [SDK Reference](/reference/nodejs) or the different [templates](/templates/intro) we offer to kickstart your next PDF generation. 
