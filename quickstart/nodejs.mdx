@@ -83,11 +83,12 @@ import { readFileSync, writeFileSync } from "fs";
 import { renderToString } from "react-dom/server";
 import { join } from "path";
 
-const onedoc = new Onedoc([ONEDOC_API_KEYTOKEN]);
+const onedoc = new Onedoc(ONEDOC_API_KEY);
 
 let doc = {
     html: renderToString(<PDFTemplate name="Bruce Wayne" />),
     title: "Hello",
+    test: true,
     assets: [
       {
         path: "./stylesheet.css",
@@ -95,17 +96,26 @@ let doc = {
       },
     ],
   };
-
-const { file, info, error } = await onedoc.render(doc, true); //dev = false renders the document with a watermark);
+    
+const { file, link, error, info } = await onedoc.render(doc);
 
 if (error) {
-    throw error;
+  throw error;
 }
 
 writeFileSync(",/hello.pdf", Buffer.from(file));
 ```
 
 </CodeGroup>
+
+It is important to note that the above script should run in an async function.
+For example:
+
+```javascript
+(async () => {
+  //run async code here
+})()
+```
 
 Stylesheets and other referenced assets should be passed in the `asset` parameter. If you are using a framework such as Tailwind, you must submit a <b>compiled stylesheet</b> that can be applied to a HTML file that contains the compiled React component. <br/>
 You must upload the content of your asset in string or Buffer format in the `content` field.
