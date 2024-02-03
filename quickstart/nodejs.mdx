@@ -78,10 +78,10 @@ Import the React document template and generate a PDF using your `ONEDOC_API_KEY
 ```javascript generate.js
 import { PDFTemplate } from "./components/pdf-template";
 import { Onedoc } from '@onedoc/client"';
-import { writeFileSync } from "fs";
+import { readFileSync, writeFileSync } from "fs";
 import { renderToString } from "react-dom/server";
 
-const onedoc = new Onedoc(process.env.ONEDOC_API_KEY);
+const onedoc = new Onedoc("ebec0c4c-214f-4796-afd2-b5c9b12281b6");
 
 let doc = {
   html: renderToString(<PDFTemplate name="Bruce Wayne" />),
@@ -89,8 +89,7 @@ let doc = {
   assets: [
     {
       path: "./stylesheet.css",
-      content: fs
-        .readFileSync(path.join(process.cwd(), "stylesheet.css"))
+      content: readFileSync(path.join(process.cwd(), "stylesheet.css"))
         .toString(),
     },
   ],
@@ -102,7 +101,7 @@ if (error) {
   throw error;
 }
 
-writeFileSync("hello.pdf", Buffer.from(file));
+writeFileSync(",/hello.pdf", Buffer.from(file));
 ```
 
 </CodeGroup>
