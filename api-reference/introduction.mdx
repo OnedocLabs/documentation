@@ -53,11 +53,11 @@ async function uploadToSignedUrl(
   url.searchParams.set("token", token);
 
 try {
-let body;
-const options = { upsert: DEFAULT_FILE_OPTIONS.upsert, ...fileOptions };
-const headers: Record<string, string> = {
-...{ "x-upsert": String(options.upsert as boolean) },
-};
+    let body;
+    const options = { upsert: DEFAULT_FILE_OPTIONS.upsert, ...fileOptions };
+    const headers: Record<string, string> = {
+    ...{ "x-upsert": String(options.upsert as boolean) },
+    };
 
     if (typeof Blob !== "undefined" && fileBody instanceof Blob) {
       body = new FormData();
@@ -93,9 +93,9 @@ const headers: Record<string, string> = {
       return { data: null, error };
     }
 
-} catch (error) {
-throw error;
-}
+    } catch (error) {
+    throw error;
+    }
 }
 
 ```
