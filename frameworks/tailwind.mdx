@@ -1,7 +1,7 @@
 ---
-title: "Node.js + React"
-description: "Learn how to create your first document using the Onedoc Node.js + React SDK."
-icon: react
+title: "Tailwind CSS"
+description: "Learn how to create your first document using the Onedoc Node.js + TailwindCSS."
+icon: t
 ---
 
 <Warning>
@@ -64,19 +64,11 @@ import * as React from "react";
 
 export const PDFTemplate = ({ name }) => {
   return (
-    <div>
+    <div className="mt-10">
       <h1> Hello {name} !</h1>
     </div>
   );
 };
-```
-
-and optionally, a stylesheet named `stylesheet.css`, in the `root` directory:
-
-```css ./stylesheet.css
-body {
-  background-color: lightblue;
-}
 ```
 
 ## 3. Generate your PDF
@@ -85,29 +77,42 @@ Create a new `generate.tsx' file, import the React document template and generat
 
 <CodeGroup>
 
-```javascript generate.jsx
+```javascript generate.tsx
 import React from "react";
 import { PDFTemplate } from "./components/pdf-template";
 import { Onedoc } from "@onedoc/client";
 import { readFileSync, writeFileSync } from "fs";
 import { renderToString } from "react-dom/server";
-import { join } from "path";
+import postcss from "postcss";
+import tailwindcss from "tailwindcss";
+import postcssColorFunctionalNotation from "postcss-color-functional-notation";
 
 const ONEDOC_API_KEY = "####-####-####-####” // replace with your api key
 
+const onedoc = new Onedoc(ONEDOC_API_KEY);
+
 (async () => {
-  const onedoc = new Onedoc(ONEDOC_API_KEY);
+
+  const html = renderToString(<PDFTemplate name="Bruce Wayne" />)
+  const css = await postcss([
+    tailwindcss({
+        content: [{ raw: html, extension: "html" }],
+    }),
+    postcssColorFunctionalNotation,])
+    .process(`@tailwind base;@tailwind components;@tailwind utilities;`, {
+        from: undefined,
+    }); // loads compiled tailwind styles
 
   let doc = {
-    html: renderToString(<PDFTemplate name="Bruce Wayne" />),
+    html: html,
     title: "Hello",
     test: true, // if true, produce a PDF in test mode with a Onedoc's watermark 
     save: true, // if true, host the document and provide a download link in the console and your Onedoc's dashboard
     expiresIn: 30, // the number of day you want to host your document
     assets: [
       {
-        path: "./stylesheet.css",
-        content: readFileSync(join(process.cwd(), "stylesheet.css")).toString(),
+          path: "./style.css",
+          content: css.toString(),
       },
     ],
   };
