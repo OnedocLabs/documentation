@@ -57,7 +57,7 @@ Create a `components` directory using the following command:
 mkdir components
 ```
 
-Then create your document template on `components/pdf-template.js`.<br/>Your file must export a React component.
+Then create your document template on `components/pdf-template.jsx`.<br/>Your file must export a React component.
 
 ```javascript components/pdf-template.jsx
 import * as React from "react";
@@ -85,7 +85,7 @@ Create a new file `generate.tsx', import the React document template and generat
 
 <CodeGroup>
 
-```javascript generate.jsx
+```javascript generate.tsx
 import React from "react";
 import { PDFTemplate } from "./components/pdf-template";
 import { Onedoc } from "@onedoc/client";
