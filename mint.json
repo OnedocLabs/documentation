@@ -58,9 +58,9 @@
       "url": "reference"
     },
     {
-      "name": "React-Print",
+      "name": "react-print",
       "icon": "react",
-      "url": "components"
+      "url": "https://react.onedoclabs.com/"
     },
     {
       "name": "Community",
@@ -82,15 +82,6 @@
     {
       "group": "General",
       "pages": ["introduction", "gettoknowus"]
-    },
-    {
-      "group": "Components",
-      "pages": [
-        "components/introduction",
-        "components/Shell",
-        "components/Footnote",
-        "components/RunningHeader"
-      ]
     },
     {
       "group": "Quick Start",
