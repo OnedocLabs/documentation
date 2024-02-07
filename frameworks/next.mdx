@@ -1,0 +1,146 @@
+---
+title: "Next JS"
+description: "Learn how to create your first document using the Onedoc Node.js in Next."
+icon: n
+---
+
+<Warning>
+  Onedoc is currently in private beta only mode. [Contact
+  us](mailto:contact@onedoclabs.com?subject=Support%20request&body=Describe%20your%20issue%20and%20our%20team%20will%20get%20back%20to%20you%20as%20soon%20as%20possible.)
+  to get access and try our solution.{" "}
+</Warning>
+
+## Prerequisites
+
+To get the most out of this guide, you'll need to:
+
+- [Sign-up/in to Onedoc](https://app.onedoclabs.com/login)
+- [Generate your API Key](https://app.onedoclabs.com/)
+
+## 1. Installation
+
+<Tip>
+  Want to get started without a project? We have setup a [simple
+  CodeSandbox](https://codesandbox.io/p/devbox/onedoc-template-invoice-forked-jdyw6j?embed=1&file=%2Findex.tsx)
+  for you to try out.
+</Tip>
+
+If you did not have set up a NodeJS project, you can use the following command to do so: 
+
+```sh npx
+npx create-next-app@latest myonedocnextapp
+```
+
+Get the Onedoc Node.js SDK
+
+<CodeGroup>
+
+```sh npm
+npm install -s @onedoc/client
+```
+
+```sh yarn
+yarn add @onedoc/client
+```
+
+```sh pnpm
+pnpm add @onedoc/client
+```
+
+</CodeGroup>
+
+## 2. Get your Next project going.
+
+Create an API file under `pages/api/pdf.ts` if you’re using the [Pages Router](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) or create a route file under `app/api/pdf/route.ts` if you’re using the [App Router](https://nextjs.org/docs/app/building-your-application/routing/route-handlers).
+
+## 3. Generate a PDF in your /api/pdf endpoint
+
+
+<CodeGroup>
+```typescript pages/api/pdf.ts
+import Template from "../../src/testDocument/src/index.doc.js"
+import { renderToString } from 'react-dom/server';
+import { Onedoc } from "@onedoc/client"
+
+let onedoc = new Onedoc("XXXX-XXXX-XXXXX-XXXX-XXXX")
+
+export default async function handler(req, res) {
+    if (req.method === 'POST') {
+      
+      let doc = {
+        html: "<h1>Hello World</h1>",
+        title: "Hello world",
+        test: true,
+        save: false,
+        assets: [],
+      };
+
+      const { file, link, error, info } = await onedoc.render(doc);
+      
+      if (error) {
+        throw error;
+      }
+    
+      const pdfBuffer = Buffer.from(file);
+
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', 'inline; filename="doc.pdf"');
+      res.setHeader('Content-Length', pdfBuffer.length);
+
+      res.send(pdfBuffer);
+    
+    } else {
+      res.setHeader('Allow', ['POST']);
+      res.status(405).end(`Method ${req.method} Not Allowed`);
+    }
+  }
+
+```
+```typescript app/api/api/route.ts
+import { Onedoc } from "@onedoc/client"
+import { NextResponse } from 'next/server';
+
+let onedoc = new Onedoc("XXXX-XXXX-XXXXX-XXXX-XXXX")
+
+export async function POST(req, res) {
+    if (req.method === 'POST') {
+
+      let doc = {
+        html: "<h1>Hello World</h1>",
+        title: "Hello world",
+        test: true,
+        save: false,
+        assets: [],
+      };
+    
+      const { file, link, error, info } = await onedoc.render(doc);
+    
+      if (error) {
+        throw error;
+      }
+    
+      const pdfBuffer = Buffer.from(file);
+
+      const response = new NextResponse(pdfBuffer, {
+            "headers": {
+            'Content-Type': 'application/pdf',
+            'Content-Disposition':'inline; filename="doc.pdf"',
+            'Content-Length': pdfBuffer.length
+            },
+        });
+    
+        return response;
+    
+    } else {
+      res.setHeader('Allow', ['POST']);
+      res.status(405).end(`Method ${req.method} Not Allowed`);
+    }
+  }
+
+```
+</CodeGroup>
+
+## 4. Congratulations ! 
+
+Your PDF is now downloadable via `POST` request at `/api/pdf` ! 🎉
+
