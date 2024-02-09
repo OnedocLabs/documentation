@@ -25,7 +25,7 @@ To get the most out of this guide, you'll need to:
   for you to try out.
 </Tip>
 
-If you did not have set up a NodeJS project, you can use the following command to do so: 
+If you did not have set up a NodeJS project, you can use the following command to do so:
 
 ```sh npx
 npx create-next-app@latest myonedocnextapp
@@ -49,98 +49,168 @@ pnpm add @onedoc/client
 
 </CodeGroup>
 
+Using React?
+
+Install the React SDK as well:
+
+```sh npm
+npm install -s @onedoc/react-print
+```
+
+```sh yarn
+yarn add @onedoc/react-print
+```
+
+```sh pnpm
+pnpm add @onedoc/react-print
+```
+
 ## 2. Get your Next project going.
 
 Create an API file under `pages/api/pdf.ts` if you’re using the [Pages Router](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) or create a route file under `app/api/pdf/route.ts` if you’re using the [App Router](https://nextjs.org/docs/app/building-your-application/routing/route-handlers).
 
-## 3. Generate a PDF in your /api/pdf endpoint
-
+## 3.A. With the app router
 
 <CodeGroup>
-```typescript pages/api/pdf.ts
-import Template from "../../src/testDocument/src/index.doc.js"
-import { renderToString } from 'react-dom/server';
-import { Onedoc } from "@onedoc/client"
 
-let onedoc = new Onedoc("XXXX-XXXX-XXXXX-XXXX-XXXX")
+```typescript app/api/pdf.ts
+import { type NextRequest } from "next/server";
+import { Onedoc } from "@onedoc/client";
 
-export default async function handler(req, res) {
-    if (req.method === 'POST') {
-      
-      let doc = {
-        html: "<h1>Hello World</h1>",
-        title: "Hello world",
-        test: true,
-        save: false,
-        assets: [],
-      };
+const onedoc = new Onedoc(process.env.ONEDOC_API_KEY as string);
 
-      const { file, link, error, info } = await onedoc.render(doc);
-      
-      if (error) {
-        throw error;
-      }
-    
-      const pdfBuffer = Buffer.from(file);
+export async function GET(request: NextRequest) {
+  const { file, link, error, info } = await onedoc.render({
+    html: "<h1>Test</h1>",
+  });
 
-      res.setHeader('Content-Type', 'application/pdf');
-      res.setHeader('Content-Disposition', 'inline; filename="doc.pdf"');
-      res.setHeader('Content-Length', pdfBuffer.length);
-
-      res.send(pdfBuffer);
-    
-    } else {
-      res.setHeader('Allow', ['POST']);
-      res.status(405).end(`Method ${req.method} Not Allowed`);
-    }
+  if (error) {
+    throw error;
   }
 
+  const pdfBuffer = Buffer.from(file);
+
+  // Return the PDF
+  return new Response(pdfBuffer, {
+    headers: {
+      "Content-Type": "application/pdf",
+    },
+  });
+}
 ```
-```typescript app/api/api/route.ts
-import { Onedoc } from "@onedoc/client"
-import { NextResponse } from 'next/server';
 
-let onedoc = new Onedoc("XXXX-XXXX-XXXXX-XXXX-XXXX")
+```typescript app/api/pdf-with-react.tsx
+import { type NextRequest } from "next/server";
+import { Onedoc } from "@onedoc/client";
+import { compile } from "@onedoc/react-print";
 
-export async function POST(req, res) {
-    if (req.method === 'POST') {
+const onedoc = new Onedoc(process.env.ONEDOC_API_KEY as string);
 
-      let doc = {
-        html: "<h1>Hello World</h1>",
-        title: "Hello world",
-        test: true,
-        save: false,
-        assets: [],
-      };
-    
-      const { file, link, error, info } = await onedoc.render(doc);
-    
-      if (error) {
-        throw error;
-      }
-    
-      const pdfBuffer = Buffer.from(file);
+export async function GET(request: NextRequest) {
+  const { file, link, error, info } = await onedoc.render({
+    html: compile(<h1>Test</h1>),
+  });
 
-      const response = new NextResponse(pdfBuffer, {
-            "headers": {
-            'Content-Type': 'application/pdf',
-            'Content-Disposition':'inline; filename="doc.pdf"',
-            'Content-Length': pdfBuffer.length
-            },
-        });
-    
-        return response;
-    
-    } else {
-      res.setHeader('Allow', ['POST']);
-      res.status(405).end(`Method ${req.method} Not Allowed`);
-    }
+  if (error) {
+    throw error;
   }
 
+  const pdfBuffer = Buffer.from(file);
+
+  // Return the PDF
+  return new Response(pdfBuffer, {
+    headers: {
+      "Content-Type": "application/pdf",
+    },
+  });
+}
 ```
+
 </CodeGroup>
 
-## 4. Congratulations ! 
+## 3.B. With the pages router
+
+<CodeGroup>
+
+```typescript pages/api/pdf.ts
+import Template from "../../src/testDocument/src/index.doc.js";
+import { renderToString } from "react-dom/server";
+import { Onedoc } from "@onedoc/client";
+
+let onedoc = new Onedoc(process.env.ONEDOC_API_KEY as string);
+
+export default async function handler(req, res) {
+  if (req.method === "POST") {
+    let doc = {
+      html: "<h1>Hello World</h1>",
+      title: "Hello world",
+      test: true,
+      save: false,
+      assets: [],
+    };
+
+    const { file, link, error, info } = await onedoc.render(doc);
+
+    if (error) {
+      throw error;
+    }
+
+    const pdfBuffer = Buffer.from(file);
+
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader("Content-Disposition", 'inline; filename="doc.pdf"');
+    res.setHeader("Content-Length", pdfBuffer.length);
+
+    res.send(pdfBuffer);
+  } else {
+    res.setHeader("Allow", ["POST"]);
+    res.status(405).end(`Method ${req.method} Not Allowed`);
+  }
+}
+```
+
+```typescript app/api/api/route.ts
+import { Onedoc } from "@onedoc/client";
+import { NextResponse } from "next/server";
+
+let onedoc = new Onedoc("XXXX-XXXX-XXXXX-XXXX-XXXX");
+
+export async function POST(req, res) {
+  if (req.method === "POST") {
+    let doc = {
+      html: "<h1>Hello World</h1>",
+      title: "Hello world",
+      test: true,
+      save: false,
+      assets: [],
+    };
+
+    const { file, link, error, info } = await onedoc.render(doc);
+
+    if (error) {
+      throw error;
+    }
+
+    const pdfBuffer = Buffer.from(file);
+
+    const response = new NextResponse(pdfBuffer, {
+      headers: {
+        "Content-Type": "application/pdf",
+        "Content-Disposition": 'inline; filename="doc.pdf"',
+        "Content-Length": pdfBuffer.length,
+      },
+    });
+
+    return response;
+  } else {
+    res.setHeader("Allow", ["POST"]);
+    res.status(405).end(`Method ${req.method} Not Allowed`);
+  }
+}
+```
+
+</CodeGroup>
+
+## 4. Congratulations !
 
 Your PDF is now downloadable via `POST` request at `/api/pdf` ! 🎉
-
