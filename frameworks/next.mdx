@@ -112,7 +112,7 @@ const onedoc = new Onedoc(process.env.ONEDOC_API_KEY as string);
 
 export async function GET(request: NextRequest) {
   const { file, link, error, info } = await onedoc.render({
-    html: compile(<h1>Test</h1>),
+    html: await compile(<h1>Test</h1>),
   });
 
   if (error) {
