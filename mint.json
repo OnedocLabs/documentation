@@ -102,7 +102,7 @@
     },
     {
       "group": "Templates",
-      "pages": ["templates/intro", "templates/invoice", "templates/contract"]
+      "pages": ["templates/intro"]
     },
     {
       "group": "SDK Reference",
