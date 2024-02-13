@@ -4,9 +4,7 @@ description: "Learn how to create your first document using the Onedoc Node.js +
 icon: react
 ---
 
-<Warning>
-  Onedoc is currently in publi beta mode.
-</Warning>
+<Warning>Onedoc is currently in publi beta mode.</Warning>
 
 ## Prerequisites
 
@@ -23,7 +21,7 @@ To get the most out of this guide, you'll need to:
   for you to try out.
 </Tip>
 
-If you did not have set up a NodeJS project, you can use the following command to do so: 
+If you did not have set up a NodeJS project, you can use the following command to do so:
 
 ```sh npm
 npm init -y
@@ -97,9 +95,9 @@ const ONEDOC_API_KEY = "####-####-####-####"; // replace with your api key
   const onedoc = new Onedoc(ONEDOC_API_KEY);
 
   let doc = {
-    html: compile(<PDFTemplate name="Bruce Wayne" />),
+    html: await compile(<PDFTemplate name="Bruce Wayne" />),
     title: "Hello",
-    test: true, // if true, produce a PDF in test mode with a Onedoc's watermark 
+    test: true, // if true, produce a PDF in test mode with a Onedoc's watermark
     save: true, // if true, host the document and provide a download link in the console and your Onedoc's dashboard
     expiresIn: 30, // the number of day you want to host your document
     assets: [
@@ -122,12 +120,11 @@ const ONEDOC_API_KEY = "####-####-####-####"; // replace with your api key
 
 </CodeGroup>
 
-You are almost done ! Run the script using the following command : 
+You are almost done ! Run the script using the following command :
 
 ```sh terminal
 npx tsx ./generate.tsx
 ```
-
 
 Stylesheets and other referenced assets should be passed in the `asset` parameter. If you are using a framework such as Tailwind, you must submit a <b>compiled stylesheet</b> that can be applied to a HTML file that contains the compiled React component. <br/>
 
@@ -137,5 +134,4 @@ You must upload the content of your asset in string or Buffer format in the `con
 
 You just created your first PDF using Onedoc Node.js + React SDK. You can now access your private [dashboard](https://app.onedoclabs.com/) to preview and download your PDF. <br/>
 
-Ready to learn more ? Take a look at our [SDK Reference](/reference/nodejs) or the different [templates](/templates/intro) we offer to kickstart your next PDF generation. 
-
+Ready to learn more ? Take a look at our [SDK Reference](/reference/nodejs) or the different [templates](/templates/intro) we offer to kickstart your next PDF generation.
