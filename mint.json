@@ -13,6 +13,9 @@
     "posthog": {
       "apiKey": "phc_jHjWg3U3A39knTK6ChWEUHIXMFYZ7rATZOLzhK39dv9",
       "apiHost": "https://eu.posthog.com"
+    },
+    "ga4": {
+      "measurementId": "G-KD443H3TZ3"
     }
   },
   "modeToggle": {
