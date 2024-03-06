@@ -46,7 +46,10 @@ Rendering a PDF with the Onedoc API takes 3 steps:
 ### 1. Initiate document rendering
 
 In order to render a document, intiate rendering with [api/docs/initiate](/api-reference/endpoint/initiates-a-documents-rendering).  <br/>
-This step returns a list of signed bucket URLs to which you should upload your assets' content. You should include your base html file, stysheets, and all potential assets such as images, logos etc. <br/>
+This step returns a list of signed bucket URLs to which you should upload your assets' content. You should include:
+- an `ìndex.html` file that should include your bundled react code and/or raw html. All stylesheets or other asset imports should be done with relative paths. (MANDATORY)
+- stylesheets with a path matching the relative one in the `ìndex.html` (OPTIONAL)
+- all other assets such as images, logos etc. (OPTIONAL) <br/>
 **Make sure all imports are relative and make sure they match the paths you provide in the request body.** <br/>
 This query will return a list of SignedUrl, path, token triple.
 
